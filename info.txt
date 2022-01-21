@@ -1,0 +1,6 @@
+if we put anything in public folder it will be available to browser
+so we can put css, js and images in that folder.
+
+for example in layout.blade.php file we have used external css
+so that external css file will gonna present in public folder 
+and it will access by /css/main.css
