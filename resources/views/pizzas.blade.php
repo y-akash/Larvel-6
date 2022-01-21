@@ -18,9 +18,36 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+
+            .antialiased{
+                text-align : center;
+            }
         </style>
     </head>
     <body class="antialiased">
-        <h1>Pizzas</h1>
+        <h1>Pizzas</h1>     
+        <p>{{$type}}</p>    <!-- here we are using values passed in the view for that use doubl curly braces -->
+        <p>{{$base}} - {{$price}}</p>   
+
+        <!-- if else in blade -->
+        @if($price > 15) -->
+            <p>Expensive</p>
+        @elseif($price < 5)
+            <p>Cheap</p>
+        @else
+            <p>Normal Price</p>
+        @endif
+
+        <!-- for loop in blade -->
+        @for($i=0; $i < 5; $i++)
+            <p>{{$i}}</p>
+        @endfor
+
+        <!-- we can use this to write vanilla php -->
+        @php
+            $name = "inside this @php we can write vanilla php";
+            echo($name);
+        @endphp
+
     </body>
 </html>

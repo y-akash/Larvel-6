@@ -18,7 +18,10 @@ Route::get('/', function () {
 });
 
 Route::get('/pizzas', function () {
-    // return view('pizzas');  // returning view
-    // return "returning some String";
-    return ["firstname" => "Akash", "surname" => "Yadav"];  // returning json laravel convert this associate array to json uderthe hood
+    $pizza = [
+        "type" => "hawaiian",
+        "base" => "cheesy crust",
+        "price" => 10
+    ];
+    return view('pizzas', $pizza);  // returning view
 });
