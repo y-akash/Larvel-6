@@ -18,10 +18,16 @@ Route::get('/', function () {
 });
 
 Route::get('/pizzas', function () {
+    
+
+    // getting the value of query parameter
+    $name = request("name");
+
     $pizza = [
         "type" => "hawaiian",
         "base" => "cheesy crust",
-        "price" => 10
+        "price" => 10,
+        "name" => $name
     ];
     return view('pizzas', $pizza);  // returning view
 });

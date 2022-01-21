@@ -16,7 +16,7 @@
     <div class="title m-b-md">
         Pizza List
     </div>
-
+        <h1>{{$name}}</h1>
         <h1>Pizzas</h1>     
         <p>{{$type}}</p>    <!-- here we are using values passed in the view for that use doubl curly braces -->
         <p>{{$base}} - {{$price}}</p>   
