@@ -31,3 +31,8 @@ Route::get('/pizzas', function () {
     ];
     return view('pizzas', $pizza);  // returning view
 });
+
+// here we are using route parameter or wildcard
+Route::get('/pizzas/{id}', function ($id) {
+    return view('details', ["id" => $id]);  // returning view
+});

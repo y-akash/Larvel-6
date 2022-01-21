@@ -1,7 +1,14 @@
-http://127.0.0.1:8000/?name=akash
+pizzahouse.com/pizzas/1
+pizzahouse.com/pizzas/2
+pizzahouse.com/pizzas/12345
+pizzahouse.com/pizzas/mario
 
-if we want to access query parameter than we can use request()
-example=>
-    $getValue = request("name");
+Route parameter also known as wildcard in laravel.
 
-    so in $getValue variable we get value "akash".
+it's a some kind of variable inside a URL but 
+a route parameter dosen't have variable name and
+we don't use question mark it's actually part of the URL structure.
+
+
+so for this we use 
+pizzahouse.com/pizzas/{id}
