@@ -1,14 +1,12 @@
-pizzahouse.com/pizzas/1
-pizzahouse.com/pizzas/2
-pizzahouse.com/pizzas/12345
-pizzahouse.com/pizzas/mario
-
-Route parameter also known as wildcard in laravel.
-
-it's a some kind of variable inside a URL but 
-a route parameter dosen't have variable name and
-we don't use question mark it's actually part of the URL structure.
+to create Controller class we can use command line or manually create in the file structure
+    php artisan make:controller ControllerName
 
 
-so for this we use 
-pizzahouse.com/pizzas/{id}
+in laravel 8 we import the controller class using this command in the route file
+    use App\Http\Controllers\PizzaController;
+
+to call the method of Controller class 
+    larvel 6 
+        Route::get('/pizzas', 'PizzaController@index');
+    larvel 8
+    Route::get('/pizzas', [PizzaController::class, 'index']);

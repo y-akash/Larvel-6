@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PizzaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,22 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pizzas', function () {
-    
+// pizza routes
+// this way we were using in laravel 6
+// Route::get('/pizzas', 'PizzaController@index');
+// Route::get('/pizzas/{id}', 'PizzaController@show');
 
-    // getting the value of query parameter
-    $name = request("name");
-
-    $pizza = [
-        "type" => "hawaiian",
-        "base" => "cheesy crust",
-        "price" => 10,
-        "name" => $name
-    ];
-    return view('pizzas', $pizza);  // returning view
-});
-
-// here we are using route parameter or wildcard
-Route::get('/pizzas/{id}', function ($id) {
-    return view('details', ["id" => $id]);  // returning view
-});
+// pizza routes
+// this is the new way introduce in laravel 8
+Route::get('/pizzas', [PizzaController::class, 'index']);
+Route::get('/pizzas/{id}', [PizzaController::class, 'show']);
