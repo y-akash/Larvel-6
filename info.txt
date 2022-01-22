@@ -1,24 +1,25 @@
-what is migration?
-    it allow us to programmatically define the structure of a table in our database from our code.
-    and for that we have to create migration file.
-    or
-    in simple word, we can manually create table in the db but if we want to create programmatically than
-    we can create migration file & when we run those file we will get the table in the db.
+it's something similar to JPA repository where we dont write sql query we just write method and based on method we get the value
+similarly laravel provides predefined method which can be use to interact with db without writing sql quries.
 
-in migration file there will be two method present up() & down()
-    up() => it is responsible for creating & defining the structure of table.
-    down()  => it is responsible droping the table or it is opposite of up() method.
+What is eloquent models?
+    Laravel includes Eloquent, an object-relational mapper (ORM) that makes it enjoyable to interact with your database.
+    ... In addition to retrieving records from the database table,
+    Eloquent models allow you to insert, update, and delete records from the table as well.
 
-command to create a migration file or we can manually create the file
-    php artisan make:migration fileName;
+what is model
+    model in programming is normally a class or an object blueprint that represents a certain type of data.
+    ~~~~~~~~~~~~~~~~~~~~
+    now in laravel we can create an eloquent model
+    to represent that type of data, a pizza model and then if we want to interact with that type
+    of data in the DB we will use that model to do.
+    so now under the hood eloquent uses sql to interact with teh DB but it also wraps all of that in an extra layer and
+    it provide us with a bunch of easy to use methods on the model.
 
-command to run migration
-    php artisan migrate
-    so the above command will go in each migration file and run up method
-
-command to rollback migration
-    php artisan migrate:rollback
-    if we have migrated 3 file and after that we created one new file and migrate that file also.
-    after this if we try to rollback than it will rollback the last migrated one new file and the
-    previous 3 migrated file will remain as it is it will not rollback.
-    so the above command will only rollback the latest migration.
+command to make model
+    php artisan make:model ModelName (First letter should be capital its a convention)
+    example=> php artisan make:model Pizza
+        it will create a file with name Pizza.php & it will have class name Pizza
+        larvel detect the table name by pluralizing the class name like
+        Here class name is Pizza so it will detect or connect to pizzas table or we can tell the name of table
+        so kis table ka model bana rahe (kis table se connect karna hai model ko) hai for that we have to write inside the class
+        protected $table = "tableName";
