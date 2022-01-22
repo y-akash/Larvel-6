@@ -1,12 +1,24 @@
-to create Controller class we can use command line or manually create in the file structure
-    php artisan make:controller ControllerName
+what is migration?
+    it allow us to programmatically define the structure of a table in our database from our code.
+    and for that we have to create migration file.
+    or
+    in simple word, we can manually create table in the db but if we want to create programmatically than
+    we can create migration file & when we run those file we will get the table in the db.
 
+in migration file there will be two method present up() & down()
+    up() => it is responsible for creating & defining the structure of table.
+    down()  => it is responsible droping the table or it is opposite of up() method.
 
-in laravel 8 we import the controller class using this command in the route file
-    use App\Http\Controllers\PizzaController;
+command to create a migration file or we can manually create the file
+    php artisan make:migration fileName;
 
-to call the method of Controller class 
-    larvel 6 
-        Route::get('/pizzas', 'PizzaController@index');
-    larvel 8
-    Route::get('/pizzas', [PizzaController::class, 'index']);
+command to run migration
+    php artisan migrate
+    so the above command will go in each migration file and run up method
+
+command to rollback migration
+    php artisan migrate:rollback
+    if we have migrated 3 file and after that we created one new file and migrate that file also.
+    after this if we try to rollback than it will rollback the last migrated one new file and the
+    previous 3 migrated file will remain as it is it will not rollback.
+    so the above command will only rollback the latest migration.
