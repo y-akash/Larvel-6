@@ -27,4 +27,5 @@ Route::get('/', function () {
 // pizza routes
 // this is the new way introduce in laravel 8
 Route::get('/pizzas', [PizzaController::class, 'index']);
+Route::get("/pizzas/create", [PizzaController::class, "create"]);
 Route::get('/pizzas/{id}', [PizzaController::class, 'show']);

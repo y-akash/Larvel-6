@@ -1,1 +1,2 @@
-Here we retrive the single pizza detail by id
+In this just created a web form mostly in this we used html part
+
