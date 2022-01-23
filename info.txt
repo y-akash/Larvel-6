@@ -1,12 +1,2 @@
-we can't store an array as a data type in sql
-but what we can store as a json string which can represent an array
-
-datatype will be *longtext*
-example
-    ["garlic", "olives"]    => this will be stored as a string
-    or you can imagine as we do stringify in javascript
-
-in laravel we cant pass array so we have to change it json so
-in Model we can do that by using $casts
-example=>
-    protected $casts = ["columnName" => "DataType"];
+to delete we have given method="POST" bcoz ~~~~~~~~~~~
+@method to know which method is
