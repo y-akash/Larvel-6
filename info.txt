@@ -1,20 +1,12 @@
-first we have added @csrf inside the form of create.blade.php
-bcoz if we dont give this when we submit the form it will give 419 session expired error
+we can't store an array as a data type in sql
+but what we can store as a json string which can represent an array
 
-419 session expire
-    This is built in laravel error to help to protect from cross site request forgery.
-    or (from google) 419 Page Expired error message in Laravel comes up because somewhere your csrf token verification fails which means the App\Http\Middleware\VerifyCsrfToken::class middleware is already turned on.
-    so to avoid this error we have to add @csrf blade directive inside form.
+datatype will be *longtext*
+example
+    ["garlic", "olives"]    => this will be stored as a string
+    or you can imagine as we do stringify in javascript
 
-If we want to save record in DB
-    we creat an instance of Pizza Model bcoz Pizza Model represents the pizza table in DB
-    so if we create an instance so it will be programmatic version of a record in that table.
-    example=>
-    in DB we have a table name students
-    so that we create a class Name Student which extends Model class.
-    so when we create an instance of Student class it will represent the programmatic table of DB.
-    & or it will know ki kansa table hai and.
-
-
-session data
-    return redirect("/")->with("mssg", "Thanks for your order"); // ->("key", "value")
+in laravel we cant pass array so we have to change it json so
+in Model we can do that by using $casts
+example=>
+    protected $casts = ["columnName" => "DataType"];
