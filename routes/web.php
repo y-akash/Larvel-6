@@ -18,14 +18,7 @@ use App\Http\Controllers\PizzaController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-// pizza routes
-// this way we were using in laravel 6
-// Route::get('/pizzas', 'PizzaController@index');
-// Route::get('/pizzas/{id}', 'PizzaController@show');
-
-// pizza routes
-// this is the new way introduce in laravel 8
 Route::get('/pizzas', [PizzaController::class, 'index']);
 Route::get("/pizzas/create", [PizzaController::class, "create"]);
+Route::post('/pizzas', [PizzaController::class, 'store']);
 Route::get('/pizzas/{id}', [PizzaController::class, 'show']);

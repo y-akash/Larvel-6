@@ -7,6 +7,11 @@
         <div class="title m-b-md">
             The North's Best Pizzas
         </div>
+        <!-- this is session data which is send by the store method -->
+        <!-- if we land direct to this page than session data will not available to us -->
+        <!-- if we redirect from store method to this page than only this session value will available to us. -->
+        {{ session("mssg") }}<br>
+        <a href="pizzas/create">oreder a pizza</a>
     </div>
 </div>
 @endsection

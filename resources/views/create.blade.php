@@ -4,6 +4,8 @@
 <div class="wrapper create-pizza">
     <h1>Create a New Pizza</h1>
     <form action="/pizzas" method="POST">
+        <!--  so to avoid 419 page expired error we have to add @csrf blade directive inside form.      -->
+        @csrf
         <label for="name">Your name:</label>
         <input type="text" name="name" id="name" required>
         <label for="type">Choose type of pizza:</label>
