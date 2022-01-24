@@ -25,3 +25,241 @@ to create model file
         php artisan make:model ModelName
 to crate controller, migration and Model in single command
         php artisan make:model ModelName -mc    // m=>migration, c=>controller
+
+
+
+
+********************3-css&images********************
+if we put anything in public folder it will be available to browser
+so we can put css, js and images in that folder.
+
+for example in layout.blade.php file we have used external css
+so that external css file will gonna present in public folder
+and it will access by /css/main.css
+
+********************4-query-parameter********************
+http://127.0.0.1:8000/?name=akash
+
+if we want to access query parameter than we can use request()
+example=>
+    $getValue = request("name");
+
+    so in $getValue variable we get value "akash".
+
+********************5-route-parameter********************
+to create Controller class we can use command line or manually create in the file structure
+    php artisan make:controller ControllerName
+
+
+in laravel 8 we import the controller class using this command in the route file
+    use App\Http\Controllers\PizzaController;
+
+to call the method of Controller class
+    larvel 6
+        Route::get('/pizzas', 'PizzaController@index');
+    larvel 8
+    Route::get('/pizzas', [PizzaController::class, 'index']);
+
+
+
+********************6-database-and-migration********************
+what is migration?
+    it allow us to programmatically define the structure of a table in our database from our code.
+    and for that we have to create migration file.
+    or
+    in simple word, we can manually create table in the db but if we want to create programmatically than
+    we can create migration file & when we run those file we will get the table in the db.
+
+in migration file there will be two method present up() & down()
+    up() => it is responsible for creating & defining the structure of table.
+    down()  => it is responsible droping the table or it is opposite of up() method.
+
+command to create a migration file or we can manually create the file
+    php artisan make:migration fileName;
+
+command to run migration
+    php artisan migrate
+    so the above command will go in each migration file and run up method
+
+command to rollback migration
+    php artisan migrate:rollback
+    if we have migrated 3 file and after that we created one new file and migrate that file also.
+    after this if we try to rollback than it will rollback the last migrated one new file and the
+    previous 3 migrated file will remain as it is it will not rollback.
+    so the above command will only rollback the latest migration.
+
+
+
+
+********************7-eloquent-models********************
+it's something similar to JPA repository where we dont write sql query we just write method and based on method we get the value
+similarly laravel provides predefined method which can be use to interact with db without writing sql quries.
+
+What is eloquent models?
+    Laravel includes Eloquent, an object-relational mapper (ORM) that makes it enjoyable to interact with your database.
+    ... In addition to retrieving records from the database table,
+    Eloquent models allow you to insert, update, and delete records from the table as well.
+
+what is model
+    model in programming is normally a class or an object blueprint that represents a certain type of data.
+    ~~~~~~~~~~~~~~~~~~~~
+    now in laravel we can create an eloquent model
+    to represent that type of data, a pizza model and then if we want to interact with that type
+    of data in the DB we will use that model to do.
+    so now under the hood eloquent uses sql to interact with teh DB but it also wraps all of that in an extra layer and
+    it provide us with a bunch of easy to use methods on the model.
+
+command to make model
+    php artisan make:model ModelName (First letter should be capital its a convention)
+    example=> php artisan make:model Pizza
+        it will create a file with name Pizza.php & it will have class name Pizza
+        larvel detect the table name by pluralizing the class name like
+        Here class name is Pizza so it will detect or connect to pizzas table or we can tell the name of table
+        so kis table ka model bana rahe (kis table se connect karna hai model ko) hai for that we have to write inside the class
+        protected $table = "tableName";
+
+
+
+********************8-getting-single-record-from-db********************
+Here we retrive the single pizza detail by id
+
+
+********************9-creating-web-form********************
+In this just created a web form mostly in this we used html part
+
+
+********************10-post-req-and-saving-record********************
+first we have added @csrf inside the form of create.blade.php
+bcoz if we dont give this when we submit the form it will give 419 session expired error
+
+419 session expire
+    This is built in laravel error to help to protect from cross site request forgery.
+    or (from google) 419 Page Expired error message in Laravel comes up because somewhere your csrf token verification fails which means the App\Http\Middleware\VerifyCsrfToken::class middleware is already turned on.
+    so to avoid this error we have to add @csrf blade directive inside form.
+
+If we want to save record in DB
+    we creat an instance of Pizza Model bcoz Pizza Model represents the pizza table in DB
+    so if we create an instance so it will be programmatic version of a record in that table.
+    example=>
+    in DB we have a table name students
+    so that we create a class Name Student which extends Model class.
+    so when we create an instance of Student class it will represent the programmatic table of DB.
+    & or it will know ki kansa table hai and.
+
+
+session data
+    return redirect("/")->with("mssg", "Thanks for your order"); // ->("key", "value")
+
+
+
+********************11-array-and-json********************
+we can't store an array as a data type in sql
+but what we can store as a json string which can represent an array
+
+datatype will be *longtext*
+example
+    ["garlic", "olives"]    => this will be stored as a string
+    or you can imagine as we do stringify in javascript
+
+in laravel we cant pass array so we have to change it json so
+in Model we can do that by using $casts
+example=>
+    protected $casts = ["columnName" => "DataType"];
+
+
+********************12-deleting-data********************
+to delete we have given method="POST" bcoz ~~~~~~~~~~~
+@method to know which method is
+
+
+********************13-using-sass********************
+If we want to use sass in our project so in that case we need to put that sass file inside resources/sass folder
+we cant put it under public bcoz public folder is accessible to browser in frontend and browser cant understand sass file
+so first we have to compile the sass file and converted css content need to store in the public/css folder.
+
+and for the above process
+1) we shoud have node.js in our system to run npm commands
+2) and after this we need to install dependecies using npm and all those dependencies are already written in package.json so we have to just run command "npm install" to install the dependecies
+   and all the dependecies will be install one of the dependecy will be "larvel-mix which is responsible for compiling our sass
+3) now after this we have to write instruction in  webpack.mix.js file
+instruction example=>
+        mix.js('resources/js/app.js', 'public/js')  // this will do for js file
+            .sass("resources/sass/main.scss", "public/css");    // this line will compile and convert into css
+4) after writing the instruction we need to compile that for that we need run command
+    npm run dev
+    so the above command will compile and store the content on respective directory.
+
+
+
+********************14-auth********************
+Laravel comes with a authentication system so we just need to figure out how to use it
+
+we have already migration of User table file and User Model file these are already present when we created a laravel project
+
+so we just need to make frontend where it ask for register, login etc.
+and we can make those frontend from scratch but there is one another easier way
+called UI package which has already built in.
+
+so it's on us what we want to use built in or build from scratch, in this we gonna use built in.
+
+1) install UI package using composer
+    composer require laravel/ui
+2) after installation we can use this UI package to boilerplate some front-end for us so we can use react, veu or any other front-end thing so we are using veu
+3) php artisan ui vue --auth    // this gonna do boilerplate a lot of different  things for us.
+4) after this we have to run some more commands
+    npm install
+    npm run dev
+5) after running all the above commands we get some boilerpate file which will present inside resources/views/auth folder.
+   it also add some stuff to our rout files i.e. web.php
+   for example=>
+   Auth::routes();
+        the above line generate a lod of routes for us behind the scenes to do with authentication
+
+
+
+********************15-protecting-routes********************
+if we want to protect the route means only allow to authenticate person to view the page
+than we have 2 way to achieve this.
+
+1) we can use middelware
+    example=>
+        Route::get(uri, controller)->middleware("auth");
+2) we can use constructor in the controller class so in that case
+   it will apply(protect) every route or every method of that respective controller class
+   example=>
+        public function __construct() {
+            $this->middleware("auth");
+        }
+
+So based on the requirement you can choose any way to protect the routes.
+
+
+********************16-disable-routes********************
+To see all the routes used in an application
+    php artisan route:list
+
+Auth::routes(); this will generate generate a lot of routes for us behind the scenes to do with authentication
+so if we want to disable any routes or we dont want any routes so we can do that
+by providing an array inside routes.
+example=>
+    Auth::routes([
+        "register" => false
+    ]);
+    so from the above it will disable the register route.
+
+
+********************17-named-routes********************
+<a href="/pizzas" class="back"> Back to all pizzas </a>
+in above anchor tag we have given a link to /pizzas so if requirement comes ki route change karna hai and
+it new route becomes /order/pizzas than if that old route is present on multiple places
+so it will be very difficult to change on every place
+so we can do this by chaining ->name("") to route.
+example=>
+    Route::get("/pizzas/create", [PizzaController::class, "create"])->name("giveName");
+    so the above "giveName" point to "/pizzas/create"
+    now we can use that "giveName" to every place when new requirement comes so we just need to change only at Route::get("thisPlaceOnly")
+    <a href="{{route("giveName")}}" class="back"> Back to all pizzas </a>
+
+
+{{route("giveName", "anoterValue")}} we can pass argument also in route
+ it will become => giveName/anotherValue
