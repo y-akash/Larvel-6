@@ -1,2 +1,15 @@
-to delete we have given method="POST" bcoz ~~~~~~~~~~~
-@method to know which method is
+If we want to use sass in our project so in that case we need to put that sass file inside resources/sass folder
+we cant put it under public bcoz public folder is accessible to browser in frontend and browser cant understand sass file
+so first we have to compile the sass file and converted css content need to store in the public/css folder.
+
+and for the above process
+1) we shoud have node.js in our system to run npm commands
+2) and after this we need to install dependecies using npm and all those dependencies are already written in package.json so we have to just run command "npm install" to install the dependecies
+   and all the dependecies will be install one of the dependecy will be "larvel-mix which is responsible for compiling our sass
+3) now after this we have to write instruction in  webpack.mix.js file
+instruction example=>
+        mix.js('resources/js/app.js', 'public/js')  // this will do for js file
+            .sass("resources/sass/main.scss", "public/css");    // this line will compile and convert into css
+4) after writing the instruction we need to compile that for that we need run command
+    npm run dev
+    so the above command will compile and store the content on respective directory.
