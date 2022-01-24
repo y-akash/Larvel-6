@@ -1,0 +1,27 @@
+1) install php xampp
+2) download & install composer
+        composer -v // to check whether it is installed or not
+        composer  is like npm ~~~~~
+3) To install laravel globally
+        composer global require laravel/installer
+4) To Create a project
+        laravel new projectName
+5) to create a development server (run project)
+        php artisan serve
+
+basic artisan commands
+
+to get all the routes used in an application
+        php artisan route:list
+to get info of artisan cmd
+        php artisan
+to create controller file
+        php artisan make:controller controllerName
+to create migration file
+        php artisan make:migration migrationName
+to migrate the migration file
+        php artisan migrate
+to create model file
+        php artisan make:model ModelName
+to crate controller, migration and Model in single command
+        php artisan make:model ModelName -mc    // m=>migration, c=>controller
