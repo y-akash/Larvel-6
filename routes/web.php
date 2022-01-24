@@ -27,7 +27,10 @@ Route::post('/pizzas', [PizzaController::class, 'store']);
 Route::get('/pizzas/{id}', [PizzaController::class, 'show'])->middleware("auth");
 Route::delete('/pizzas/{id}', [PizzaController::class, 'destroy'])->middleware("auth");
 
-// the below line generate a lot of routes for us behind the scenes to do with authentication
-Auth::routes();
+// if we want to disable any routes or we dont want any routes so we can do that
+//by providing an array inside routes.
+Auth::routes([
+    "register" => false
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

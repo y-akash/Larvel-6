@@ -1,14 +1,11 @@
-if we want to protect the route means only allow to authenticate person to view the page
-than we have 2 way to achieve this.
+To see all the routes used in an application
+    php artisan route:list
 
-1) we can use middelware
-    example=>
-        Route::get(uri, controller)->middleware("auth");
-2) we can use constructor in the controller class so in that case
-   it will apply(protect) every route or every method of that respective controller class
-   example=>
-        public function __construct() {
-            $this->middleware("auth");
-        }
-
-So based on the requirement you can choose any way to protect the routes.
+Auth::routes(); this will generate generate a lot of routes for us behind the scenes to do with authentication
+so if we want to disable any routes or we dont want any routes so we can do that
+by providing an array inside routes.
+example=>
+    Auth::routes([
+        "register" => false
+    ]);
+    so from the above it will disable the register route.
