@@ -1,15 +1,25 @@
-If we want to use sass in our project so in that case we need to put that sass file inside resources/sass folder
-we cant put it under public bcoz public folder is accessible to browser in frontend and browser cant understand sass file
-so first we have to compile the sass file and converted css content need to store in the public/css folder.
+Laravel comes with a authentication system so we just need to figure out how to use it
 
-and for the above process
-1) we shoud have node.js in our system to run npm commands
-2) and after this we need to install dependecies using npm and all those dependencies are already written in package.json so we have to just run command "npm install" to install the dependecies
-   and all the dependecies will be install one of the dependecy will be "larvel-mix which is responsible for compiling our sass
-3) now after this we have to write instruction in  webpack.mix.js file
-instruction example=>
-        mix.js('resources/js/app.js', 'public/js')  // this will do for js file
-            .sass("resources/sass/main.scss", "public/css");    // this line will compile and convert into css
-4) after writing the instruction we need to compile that for that we need run command
+we have already migration of User table file and User Model file these are already present when we created a laravel project
+
+so we just need to make frontend where it ask for register, login etc.
+and we can make those frontend from scratch but there is one another easier way
+called UI package which has already built in.
+
+so it's on us what we want to use built in or build from scratch, in this we gonna use built in.
+
+1) install UI package using composer
+    composer require laravel/ui
+2) after installation we can use this UI package to boilerplate some front-end for us so we can use react, veu or any other front-end thing so we are using veu
+3) php artisan ui vue --auth    // this gonna do boilerplate a lot of different  things for us.
+4) after this we have to run some more commands
+    npm install
     npm run dev
-    so the above command will compile and store the content on respective directory.
+5) after running all the above commands we get some boilerpate file which will present inside resources/views/auth folder.
+   it also add some stuff to our rout files i.e. web.php
+   for example=>
+   Auth::routes();
+        the above line generate a lod of routes for us behind the scenes to do with authentication
+
+
+

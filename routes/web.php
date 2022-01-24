@@ -23,3 +23,8 @@ Route::get("/pizzas/create", [PizzaController::class, "create"]);
 Route::post('/pizzas', [PizzaController::class, 'store']);
 Route::get('/pizzas/{id}', [PizzaController::class, 'show']);
 Route::delete('/pizzas/{id}', [PizzaController::class, 'destroy']);
+
+// the below line generate a lot of routes for us behind the scenes to do with authentication
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
