@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class PizzaController extends Controller
 {
+// if we try to protect rout using constructor than it will apply for every route or
+// every method of this class
+//    public function __construct() {
+//        $this->middleware("auth");
+//    }
+
+
     public function index() {
 //        to get all the record from pizzas table
         $pizzas = Pizza::all();
@@ -24,8 +31,6 @@ class PizzaController extends Controller
     }
 
     public function store() {
-        // here we created an instance of Pizza Model bcoz Pizza Model represents the pizza table in DB
-        // so if we create an instance so it will be programmatic version of a record in that table
         $pizza = new Pizza();
 
         $pizza->name = request("name");

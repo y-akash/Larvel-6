@@ -18,11 +18,14 @@ use App\Http\Controllers\PizzaController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/pizzas', [PizzaController::class, 'index']);
+
+// Route::get(uri, controller)->middleware("auth");
+// using this middleware we can protect the route if a user is authenticated than we will allow to view the page
+Route::get('/pizzas', [PizzaController::class, 'index'])->middleware("auth");
 Route::get("/pizzas/create", [PizzaController::class, "create"]);
 Route::post('/pizzas', [PizzaController::class, 'store']);
-Route::get('/pizzas/{id}', [PizzaController::class, 'show']);
-Route::delete('/pizzas/{id}', [PizzaController::class, 'destroy']);
+Route::get('/pizzas/{id}', [PizzaController::class, 'show'])->middleware("auth");
+Route::delete('/pizzas/{id}', [PizzaController::class, 'destroy'])->middleware("auth");
 
 // the below line generate a lot of routes for us behind the scenes to do with authentication
 Auth::routes();

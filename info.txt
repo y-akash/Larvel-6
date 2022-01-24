@@ -1,25 +1,14 @@
-Laravel comes with a authentication system so we just need to figure out how to use it
+if we want to protect the route means only allow to authenticate person to view the page
+than we have 2 way to achieve this.
 
-we have already migration of User table file and User Model file these are already present when we created a laravel project
+1) we can use middelware
+    example=>
+        Route::get(uri, controller)->middleware("auth");
+2) we can use constructor in the controller class so in that case
+   it will apply(protect) every route or every method of that respective controller class
+   example=>
+        public function __construct() {
+            $this->middleware("auth");
+        }
 
-so we just need to make frontend where it ask for register, login etc.
-and we can make those frontend from scratch but there is one another easier way
-called UI package which has already built in.
-
-so it's on us what we want to use built in or build from scratch, in this we gonna use built in.
-
-1) install UI package using composer
-    composer require laravel/ui
-2) after installation we can use this UI package to boilerplate some front-end for us so we can use react, veu or any other front-end thing so we are using veu
-3) php artisan ui vue --auth    // this gonna do boilerplate a lot of different  things for us.
-4) after this we have to run some more commands
-    npm install
-    npm run dev
-5) after running all the above commands we get some boilerpate file which will present inside resources/views/auth folder.
-   it also add some stuff to our rout files i.e. web.php
-   for example=>
-   Auth::routes();
-        the above line generate a lod of routes for us behind the scenes to do with authentication
-
-
-
+So based on the requirement you can choose any way to protect the routes.
