@@ -24,7 +24,7 @@
         <!-- if we land direct to this page than session data will not available to us -->
         <!-- if we redirect from store method to this page than only this session value will available to us. -->
         {{ session("mssg") }}<br>
-        <a href="pizzas/create">oreder a pizza</a>
+        <a href="{{route("pizzas.create")}}">oreder a pizza</a>
     </div>
 </div>
 @endsection

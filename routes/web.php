@@ -21,11 +21,11 @@ Route::get('/', function () {
 
 // Route::get(uri, controller)->middleware("auth");
 // using this middleware we can protect the route if a user is authenticated than we will allow to view the page
-Route::get('/pizzas', [PizzaController::class, 'index'])->middleware("auth");
-Route::get("/pizzas/create", [PizzaController::class, "create"]);
+Route::get('/pizzas', [PizzaController::class, 'index'])->name("pizzas.index")->middleware("auth");
+Route::get("/pizzas/create", [PizzaController::class, "create"])->name("create");
 Route::post('/pizzas', [PizzaController::class, 'store']);
-Route::get('/pizzas/{id}', [PizzaController::class, 'show'])->middleware("auth");
-Route::delete('/pizzas/{id}', [PizzaController::class, 'destroy'])->middleware("auth");
+Route::get('/pizzas/{id}', [PizzaController::class, 'show'])->name("pizzas.show")->middleware("auth");
+Route::delete('/pizzas/{id}', [PizzaController::class, 'destroy'])->name("pizzas.destroy")->middleware("auth");
 
 // if we want to disable any routes or we dont want any routes so we can do that
 //by providing an array inside routes.

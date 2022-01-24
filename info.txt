@@ -1,11 +1,14 @@
-To see all the routes used in an application
-    php artisan route:list
-
-Auth::routes(); this will generate generate a lot of routes for us behind the scenes to do with authentication
-so if we want to disable any routes or we dont want any routes so we can do that
-by providing an array inside routes.
+<a href="/pizzas" class="back"> Back to all pizzas </a>
+in above anchor tag we have given a link to /pizzas so if requirement comes ki route change karna hai and
+it new route becomes /order/pizzas than if that old route is present on multiple places
+so it will be very difficult to change on every place
+so we can do this by chaining ->name("") to route.
 example=>
-    Auth::routes([
-        "register" => false
-    ]);
-    so from the above it will disable the register route.
+    Route::get("/pizzas/create", [PizzaController::class, "create"])->name("giveName");
+    so the above "giveName" point to "/pizzas/create"
+    now we can use that "giveName" to every place when new requirement comes so we just need to change only at Route::get("thisPlaceOnly")
+    <a href="{{route("giveName")}}" class="back"> Back to all pizzas </a>
+
+
+{{route("giveName", "anoterValue")}} we can pass argument also in route
+ it will become => giveName/anotherValue
